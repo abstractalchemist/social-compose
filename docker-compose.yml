@@ -1,0 +1,29 @@
+version: '3'
+services:
+   mariadb:
+      environment:
+         MYSQL_ROOT_PASSWORD: root
+      image : "mariadb:latest"
+      networks:
+         - test
+      container_name: mariadb
+   social-app:
+      build: ../social-app
+      image: abstractalchemist/social-app:latest
+      networks:
+         - test
+      container_name: social-app
+      depends_on:
+          - "mariadb"
+   social-client:
+      build: ../social-client
+      ports:
+         - "8080:80"
+      image: abstractalchemist/social-client:latest
+      networks:
+         - test
+      container_name: social-client
+      depends_on:
+         - social-app
+networks:
+   test:
