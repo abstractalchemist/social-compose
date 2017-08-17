@@ -7,6 +7,8 @@ services:
       networks:
          - test
       container_name: mariadb
+      volumes:
+         - "dbdata:/var/lib/mysql"
    social-app:
       build: ../social-app
       image: abstractalchemist/social-app:latest
@@ -27,3 +29,5 @@ services:
          - social-app
 networks:
    test:
+volumes:
+   dbdata:
