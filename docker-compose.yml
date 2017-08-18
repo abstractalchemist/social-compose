@@ -16,6 +16,8 @@ services:
       networks:
          - test
       container_name: social-app
+      volumes:
+         - "../social-app/src:/app/src"
       depends_on:
           - "mariadb"
    social-client:
@@ -23,6 +25,8 @@ services:
       ports:
          - "8080:80"
       image: abstractalchemist/social-client:latest
+      volumes:
+         - "../social-client/build:/usr/share/nginx/html"
       networks:
          - test
       container_name: social-client
