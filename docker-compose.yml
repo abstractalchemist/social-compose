@@ -9,6 +9,7 @@ services:
       container_name: mariadb
       volumes:
          - "dbdata:/var/lib/mysql"
+         - "../social-app/dumps:/docker-entrypoint-initdb.d"
    social-app:
       build: ../social-app
       image: abstractalchemist/social-app:latest
